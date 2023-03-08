@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="TimeReportDS" targetNamespace="http://tempuri.org/TimeReportDS.xsd" xmlns:mstns="http://tempuri.org/TimeReportDS.xsd" xmlns="http://tempuri.org/TimeReportDS.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="TimeReportDS" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="TimeReportDS" msprop:Generator_UserDSName="TimeReportDS">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="IngredientsDT" msprop:Generator_TableClassName="IngredientsDTDataTable" msprop:Generator_TableVarName="tableIngredientsDT" msprop:Generator_TablePropName="IngredientsDT" msprop:Generator_RowDeletingName="IngredientsDTRowDeleting" msprop:Generator_RowChangingName="IngredientsDTRowChanging" msprop:Generator_RowEvHandlerName="IngredientsDTRowChangeEventHandler" msprop:Generator_RowDeletedName="IngredientsDTRowDeleted" msprop:Generator_UserTableName="IngredientsDT" msprop:Generator_RowChangedName="IngredientsDTRowChanged" msprop:Generator_RowEvArgName="IngredientsDTRowChangeEvent" msprop:Generator_RowClassName="IngredientsDTRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Название" msprop:Generator_ColumnVarNameInTable="columnНазвание" msprop:Generator_ColumnPropNameInRow="Название" msprop:Generator_ColumnPropNameInTable="НазваниеColumn" msprop:Generator_UserColumnName="Название" type="xs:string" minOccurs="0" />
+              <xs:element name="Количество" msprop:Generator_ColumnVarNameInTable="columnКоличество" msprop:Generator_ColumnPropNameInRow="Количество" msprop:Generator_ColumnPropNameInTable="КоличествоColumn" msprop:Generator_UserColumnName="Количество" type="xs:string" minOccurs="0" />
+              <xs:element name="Ед_изм" msprop:Generator_ColumnVarNameInTable="columnЕд_изм" msprop:Generator_ColumnPropNameInRow="Ед_изм" msprop:Generator_ColumnPropNameInTable="Ед_измColumn" msprop:Generator_UserColumnName="Ед_изм" type="xs:string" minOccurs="0" />
+              <xs:element name="Цена" msprop:Generator_ColumnVarNameInTable="columnЦена" msprop:Generator_ColumnPropNameInRow="Цена" msprop:Generator_ColumnPropNameInTable="ЦенаColumn" msprop:Generator_UserColumnName="Цена" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="DishesDT" msprop:Generator_TableClassName="DishesDTDataTable" msprop:Generator_TableVarName="tableDishesDT" msprop:Generator_TablePropName="DishesDT" msprop:Generator_RowDeletingName="DishesDTRowDeleting" msprop:Generator_RowChangingName="DishesDTRowChanging" msprop:Generator_RowEvHandlerName="DishesDTRowChangeEventHandler" msprop:Generator_RowDeletedName="DishesDTRowDeleted" msprop:Generator_UserTableName="DishesDT" msprop:Generator_RowChangedName="DishesDTRowChanged" msprop:Generator_RowEvArgName="DishesDTRowChangeEvent" msprop:Generator_RowClassName="DishesDTRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Название" msprop:Generator_ColumnVarNameInTable="columnНазвание" msprop:Generator_ColumnPropNameInRow="Название" msprop:Generator_ColumnPropNameInTable="НазваниеColumn" msprop:Generator_UserColumnName="Название" type="xs:string" minOccurs="0" />
+              <xs:element name="Количество" msprop:Generator_ColumnVarNameInTable="columnКоличество" msprop:Generator_ColumnPropNameInRow="Количество" msprop:Generator_ColumnPropNameInTable="КоличествоColumn" msprop:Generator_UserColumnName="Количество" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

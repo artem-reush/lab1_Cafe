@@ -1,0 +1,68 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Content Remove="wwwroot\files\BillReport.rdlc" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="wwwroot\files\BillReport.rdlc" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AspNetCore.Reporting" Version="2.1.0" />
+    <PackageReference Include="System.CodeDom" Version="6.0.0" />
+    <PackageReference Include="System.Data.SqlClient" Version="4.8.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Update="wwwroot\files\TimeReport.rdlc">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="ReportDataSets\BillDS.Designer.cs">
+      <DependentUpon>BillDS.xsd</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+    </Compile>
+    <Compile Update="ReportDataSets\TimeReportDS.cs">
+      <DependentUpon>TimeReportDS.xsd</DependentUpon>
+    </Compile>
+    <Compile Update="ReportDataSets\TimeReportDS.Designer.cs">
+      <DependentUpon>TimeReportDS.xsd</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="ReportDataSets\BillDS.xsc">
+      <DependentUpon>BillDS.xsd</DependentUpon>
+    </None>
+    <None Update="ReportDataSets\BillDS.xsd">
+      <SubType>Designer</SubType>
+      <LastGenOutput>BillDS.Designer.cs</LastGenOutput>
+      <Generator>MSDataSetGenerator</Generator>
+    </None>
+    <None Update="ReportDataSets\BillDS.xss">
+      <DependentUpon>BillDS.xsd</DependentUpon>
+    </None>
+    <None Update="ReportDataSets\TimeReportDS.xsc">
+      <DependentUpon>TimeReportDS.xsd</DependentUpon>
+    </None>
+    <None Update="ReportDataSets\TimeReportDS.xsd">
+      <SubType>Designer</SubType>
+      <LastGenOutput>TimeReportDS.Designer.cs</LastGenOutput>
+      <Generator>MSDataSetGenerator</Generator>
+    </None>
+    <None Update="ReportDataSets\TimeReportDS.xss">
+      <DependentUpon>TimeReportDS.xsd</DependentUpon>
+    </None>
+  </ItemGroup>
+
+</Project>

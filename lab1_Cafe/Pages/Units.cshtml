@@ -1,0 +1,39 @@
+﻿@page
+@model lab1_Cafe.Pages.UnitsModel
+@{
+    ViewData["Title"] = "Units";
+}
+<div class="text-left">
+    <h2>Добавить единицу измерения</h2>
+    <form method="post">
+        <div class="form-group">
+            <label>Название: </label>
+            <input class="form-control w-25" type="text" name="title" value="" required/>
+        </div>
+        <button class="btn btn-secondary" type="submit">Добавить</button>
+    </form>
+    <table class="table table-sm w-auto mt-1">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Название</th>
+                <th scope="col"></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (DataRow row in Model.DataSet.Tables["Table"].Rows)
+            {
+                <tr>
+                    <th scope="row">@row[0]</th>
+                    <td>@row[1]</td>
+                    <td>
+                        <form method="post">
+                            <a class="btn btn-success btn-sm" asp-page="UnitsEdit" asp-route-id="@row[0]" asp-route-title="@row[1]">Изменить</a>
+                            <button class="btn btn-danger btn-sm" type="submit" asp-page-handler="delete" asp-route-id="@row[0]">Удалить</button>
+                        </form>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

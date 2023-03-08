@@ -1,0 +1,83 @@
+﻿@page
+@model lab1_Cafe.Pages.OrdersModel
+@{
+    ViewData["Title"] = "Orders";
+}
+<div class="text-left">
+    <h2>Добавить заказ</h2>
+    <form method="post" class="w-25">
+        <div id="items">
+            <div class="item">
+                <div class="form-group">
+                    <label>Блюдо: </label>
+                    <select id="select-item" class="custom-select" name="position[0].Dish">
+                        @foreach (DataRow row in Model.DishSet.Tables["Table"].Rows)
+                        {
+                            <option value="@row[0]">@row[1]</option>
+                        }
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Количество порций: </label>
+                    <input class="form-control" type="text" name="position[0].Count" pattern="[1-9][0-9]*" required/>
+                    <small class="form-text text-muted">Используйте только целые числа.</small>
+                </div>
+                <hr />
+            </div>
+        </div>
+        <div class="form-group">
+            <button class="btn btn-success text-monospace" type="button" onclick="addField()">+</button>
+            <button class="btn btn-danger text-monospace" type="button" onclick="removeField()">-</button>
+        </div>
+        <button class="btn btn-secondary" type="submit">Добавить</button>
+    </form>
+    <table class="table table-sm w-auto mt-1">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Блюдо</th>
+                <th scope="col">Количество</th>
+                <th scope="col">Итого</th>
+                <th scope="col">Дата</th>
+                <th scope="col"></th>
+            </tr>
+        </thead>
+        <tbody>
+            @for (int i = 0; i < Model.DataSet.Tables["Table"].Rows.Count; i++)
+            {
+                DataRow row = Model.DataSet.Tables["Table"].Rows[i];
+                DataRow nextRow = i < Model.DataSet.Tables["Table"].Rows.Count - 1 ? Model.DataSet.Tables["Table"].Rows[i + 1] : null;
+                <tr>
+                    <th scope="row">@row[0]</th>
+                    <td>@row[2]</td>
+                    <td>@row[3]</td>
+                    <td>@row[4]</td>
+                    <td>@row[5]</td>
+                    @if (!string.IsNullOrEmpty(row[1].ToString()))
+                    {
+                        <td>
+                            <form method="post">
+                                <a class="btn btn-success btn-sm" asp-page="PositionsEdit" asp-route-id="@row[1]"
+                                   asp-route-dish="@row[2]" asp-route-count="@row[3]">Изменить</a>
+                                <button class="btn btn-danger btn-sm" type="submit" asp-page-handler="deletePosition" asp-route-idPosition="@row[1]">Удалить</button>
+                            </form>
+                        </td>
+                    }
+                </tr>
+                if (nextRow == null || nextRow[0].ToString() != row[0].ToString())
+                {
+                    <tr>
+                        <th scope="row"></th>
+                        <td colspan="5">
+                            <form method="post">
+                                <a class="btn btn-success btn-sm" asp-page="PositionsAdd" asp-route-id="@row[0]">Добавить позицию</a>
+                                <button class="btn btn-danger btn-sm" type="submit" asp-page-handler="deleteOrder" asp-route-idOrder="@row[0]">Удалить заказ</button>
+                                <button class="btn btn-secondary btn-sm" type="submit" asp-page-handler="getBill" asp-route-idOrder="@row[0]">Сформировать счёт</button>
+                            </form>
+                        </td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+</div>

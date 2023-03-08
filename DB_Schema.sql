@@ -1,0 +1,152 @@
+USE [lab1_Cafe]
+GO
+/****** Object:  Table [dbo].[Блюда]    Script Date: 09.03.2023 0:04:13 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Блюда](
+	[ID_блюда] [int] IDENTITY(1,1) NOT NULL,
+	[ID_типа] [int] NOT NULL,
+	[Название] [nvarchar](50) NOT NULL,
+	[Цена_порции] [money] NOT NULL,
+ CONSTRAINT [PK_Блюда] PRIMARY KEY CLUSTERED 
+(
+	[ID_блюда] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[Ед_изм]    Script Date: 09.03.2023 0:04:13 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Ед_изм](
+	[ID_ед_изм] [int] IDENTITY(1,1) NOT NULL,
+	[Название] [nvarchar](50) NOT NULL,
+ CONSTRAINT [PK_Ед_изм] PRIMARY KEY CLUSTERED 
+(
+	[ID_ед_изм] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[Заказы]    Script Date: 09.03.2023 0:04:13 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Заказы](
+	[ID_заказа] [int] IDENTITY(1,1) NOT NULL,
+	[Дата] [datetime] NOT NULL,
+ CONSTRAINT [PK_Заказы] PRIMARY KEY CLUSTERED 
+(
+	[ID_заказа] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[Ингредиенты]    Script Date: 09.03.2023 0:04:13 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Ингредиенты](
+	[ID_ингредиента] [int] IDENTITY(1,1) NOT NULL,
+	[ID_ед_изм] [int] NOT NULL,
+	[Название] [nvarchar](50) NOT NULL,
+	[Цена] [money] NOT NULL,
+ CONSTRAINT [PK_Ингредиенты] PRIMARY KEY CLUSTERED 
+(
+	[ID_ингредиента] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[Позиции]    Script Date: 09.03.2023 0:04:13 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Позиции](
+	[ID_позиции] [int] IDENTITY(1,1) NOT NULL,
+	[ID_заказа] [int] NOT NULL,
+	[ID_блюда] [int] NOT NULL,
+	[Количество] [int] NOT NULL,
+	[Итого] [money] NOT NULL,
+	[Дата] [datetime] NOT NULL,
+ CONSTRAINT [PK_Позиции] PRIMARY KEY CLUSTERED 
+(
+	[ID_позиции] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[Рецепты]    Script Date: 09.03.2023 0:04:13 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Рецепты](
+	[ID_рецепта] [int] IDENTITY(1,1) NOT NULL,
+	[ID_блюда] [int] NOT NULL,
+	[ID_ингредиента] [int] NOT NULL,
+	[Количество] [real] NOT NULL,
+ CONSTRAINT [PK_Рецепты] PRIMARY KEY CLUSTERED 
+(
+	[ID_рецепта] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[Типы]    Script Date: 09.03.2023 0:04:13 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Типы](
+	[ID_типа] [int] IDENTITY(1,1) NOT NULL,
+	[Название] [nvarchar](50) NOT NULL,
+ CONSTRAINT [PK_Типы] PRIMARY KEY CLUSTERED 
+(
+	[ID_типа] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+ALTER TABLE [dbo].[Блюда]  WITH CHECK ADD  CONSTRAINT [FK_Блюда_Типы] FOREIGN KEY([ID_типа])
+REFERENCES [dbo].[Типы] ([ID_типа])
+ON UPDATE CASCADE
+ON DELETE CASCADE
+GO
+ALTER TABLE [dbo].[Блюда] CHECK CONSTRAINT [FK_Блюда_Типы]
+GO
+ALTER TABLE [dbo].[Ингредиенты]  WITH CHECK ADD  CONSTRAINT [FK_Ингредиенты_Ед_изм] FOREIGN KEY([ID_ед_изм])
+REFERENCES [dbo].[Ед_изм] ([ID_ед_изм])
+ON UPDATE CASCADE
+ON DELETE CASCADE
+GO
+ALTER TABLE [dbo].[Ингредиенты] CHECK CONSTRAINT [FK_Ингредиенты_Ед_изм]
+GO
+ALTER TABLE [dbo].[Позиции]  WITH CHECK ADD  CONSTRAINT [FK_Позиции_Блюда] FOREIGN KEY([ID_блюда])
+REFERENCES [dbo].[Блюда] ([ID_блюда])
+ON UPDATE CASCADE
+ON DELETE CASCADE
+GO
+ALTER TABLE [dbo].[Позиции] CHECK CONSTRAINT [FK_Позиции_Блюда]
+GO
+ALTER TABLE [dbo].[Позиции]  WITH CHECK ADD  CONSTRAINT [FK_Позиции_Заказы] FOREIGN KEY([ID_заказа])
+REFERENCES [dbo].[Заказы] ([ID_заказа])
+ON UPDATE CASCADE
+ON DELETE CASCADE
+GO
+ALTER TABLE [dbo].[Позиции] CHECK CONSTRAINT [FK_Позиции_Заказы]
+GO
+ALTER TABLE [dbo].[Рецепты]  WITH CHECK ADD  CONSTRAINT [FK_Рецепты_Блюда] FOREIGN KEY([ID_блюда])
+REFERENCES [dbo].[Блюда] ([ID_блюда])
+ON UPDATE CASCADE
+ON DELETE CASCADE
+GO
+ALTER TABLE [dbo].[Рецепты] CHECK CONSTRAINT [FK_Рецепты_Блюда]
+GO
+ALTER TABLE [dbo].[Рецепты]  WITH CHECK ADD  CONSTRAINT [FK_Рецепты_Ингредиенты] FOREIGN KEY([ID_ингредиента])
+REFERENCES [dbo].[Ингредиенты] ([ID_ингредиента])
+ON UPDATE CASCADE
+ON DELETE CASCADE
+GO
+ALTER TABLE [dbo].[Рецепты] CHECK CONSTRAINT [FK_Рецепты_Ингредиенты]
+GO

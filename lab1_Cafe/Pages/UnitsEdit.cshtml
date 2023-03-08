@@ -1,0 +1,14 @@
+﻿@page 
+@model lab1_Cafe.Pages.UnitsEditModel
+@{
+    ViewData["Title"] = "UnitsEdit";
+}
+<div class="text-left">
+    <form method="post">
+        <div class="form-group">
+            <label>Название: </label>
+            <input class="form-control w-25" type="text" name="title" value="@Model.UnitTitle" required/>
+        </div>
+        <button class="btn btn-secondary" type="submit" asp-route-id="@Model.UnitId">Изменить</button>
+    </form>
+</div>

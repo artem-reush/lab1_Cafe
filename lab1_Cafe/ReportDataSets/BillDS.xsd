@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="BillDS" targetNamespace="http://tempuri.org/BillDS.xsd" xmlns:mstns="http://tempuri.org/BillDS.xsd" xmlns="http://tempuri.org/BillDS.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="BillDS" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="BillDS" msprop:Generator_UserDSName="BillDS">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="BillDT" msprop:Generator_TableClassName="BillDTDataTable" msprop:Generator_TableVarName="tableBillDT" msprop:Generator_RowChangedName="BillDTRowChanged" msprop:Generator_TablePropName="BillDT" msprop:Generator_RowDeletingName="BillDTRowDeleting" msprop:Generator_RowChangingName="BillDTRowChanging" msprop:Generator_RowEvHandlerName="BillDTRowChangeEventHandler" msprop:Generator_RowDeletedName="BillDTRowDeleted" msprop:Generator_RowClassName="BillDTRow" msprop:Generator_UserTableName="BillDT" msprop:Generator_RowEvArgName="BillDTRowChangeEvent">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Название" msprop:Generator_ColumnVarNameInTable="columnНазвание" msprop:Generator_ColumnPropNameInRow="Название" msprop:Generator_ColumnPropNameInTable="НазваниеColumn" msprop:Generator_UserColumnName="Название" type="xs:string" minOccurs="0" />
+              <xs:element name="Цена_порции" msprop:Generator_ColumnVarNameInTable="columnЦена_порции" msprop:Generator_ColumnPropNameInRow="Цена_порции" msprop:Generator_ColumnPropNameInTable="Цена_порцииColumn" msprop:Generator_UserColumnName="Цена_порции" type="xs:string" minOccurs="0" />
+              <xs:element name="Количество" msprop:Generator_ColumnVarNameInTable="columnКоличество" msprop:Generator_ColumnPropNameInRow="Количество" msprop:Generator_ColumnPropNameInTable="КоличествоColumn" msprop:Generator_UserColumnName="Количество" type="xs:string" minOccurs="0" />
+              <xs:element name="Итого" msprop:Generator_ColumnVarNameInTable="columnИтого" msprop:Generator_ColumnPropNameInRow="Итого" msprop:Generator_ColumnPropNameInTable="ИтогоColumn" msprop:Generator_UserColumnName="Итого" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

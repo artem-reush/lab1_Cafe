@@ -1,0 +1,58 @@
+﻿@page
+@model lab1_Cafe.Pages.IngredientsModel
+@{
+    ViewData["Title"] = "Ingredients";
+}
+<div class="text-left">
+    <h2>Добавить ингредиенты</h2>
+    <form method="post" class="w-25">
+        <div class="form-group">
+            <label>Название: </label>
+            <input class="form-control" type="text" name="title" required/>
+        </div>
+        <div class="form-group">
+            <label>Единица измерения: </label>
+            <select class="custom-select" name="unit">
+                @foreach (DataRow row in Model.UnitsSet.Tables["Table"].Rows)
+                {
+                    <option value="@row[0]">@row[1]</option>
+                }
+            </select>
+        </div>
+        <div class="form-group">
+            <label>Цена: </label>
+            <input class="form-control" type="text" name="price" pattern="[1-9][0-9]*[,]?[0-9]*|[0-9]+[,][0-9]+" required/>
+            <small class="form-text text-muted">Используйте запятую для указания дробной части.</small>
+        </div>
+        <button class="btn btn-secondary" type="submit">Добавить</button>
+    </form>
+    <table class="table table-sm w-auto mt-1">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Название</th>
+                <th scope="col">Единица измерения</th>
+                <th scope="col">Цена</th>
+                <th scope="col"></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (DataRow row in Model.DataSet.Tables["Table"].Rows)
+            {
+                <tr>
+                    <th scope="row">@row[0]</th>
+                    <td>@row[1]</td>
+                    <td>@row[2]</td>
+                    <td>@row[3]</td>
+                    <td>
+                        <form method="post">
+                            <a class="btn btn-success btn-sm" asp-page="IngredientsEdit" asp-route-id="@row[0]" 
+                               asp-route-title="@row[1]" asp-route-unit="@row[2]" asp-route-price="@row[3]">Изменить</a>
+                            <button class="btn btn-danger btn-sm" type="submit" asp-page-handler="delete" asp-route-id="@row[0]">Удалить</button>
+                        </form>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
